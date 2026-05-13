@@ -24,13 +24,13 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t aathideepan/aws-cicd:${{ github.sha }} .
-          docker tag aathideepan/aws-cicd:${{ github.sha }} aathideepan/aws-cicd:latest
+          docker build -t aathideepan/frontend_deploy_cicd:${{ github.sha }} .
+          docker tag aathideepan/frontend_deploy_cicd:${{ github.sha }} aathideepan/frontend_deploy_cicd:latest
 
       - name: Push Docker Images
         run: |
-          docker push aathideepan/aws-cicd:${{ github.sha }}
-          docker push aathideepan/aws-cicd:latest
+          docker push aathideepan/frontend_deploy_cicd:${{ github.sha }}
+          docker push aathideepan/frontend_deploy_cicd:latest
 
   deploy:
     needs: build-and-push
@@ -39,7 +39,7 @@ jobs:
     steps:
       - name: Pull Latest Docker Image
         run: |
-          sudo docker pull aathideepan/aws-cicd:latest
+          sudo docker pull aathideepan/frontend_deploy_cicd:latest
 
       - name: Stop Existing Container
         run: |
@@ -52,4 +52,4 @@ jobs:
             --name aws-cicd-container \
             -p 80:80 \
             --restart always \
-            aathideepan/aws-cicd:latest
+            aathideepan/frontend_deploy_cicd:latest
