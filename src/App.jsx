@@ -18,7 +18,7 @@ function App() {
         <div>
           <h1>Deepan007</h1>
           <p>
-          <code>CI CD</code>
+          <code>Hello</code>
           </p>
         </div>
 
